@@ -1,0 +1,14 @@
+<div class="container rounded bg-dark text-white">
+    <div class="row">
+        <div class="col">
+        <h1 class="profile_item"><%= link_to  "#{@hire_artist.to_s}'s Reviews", artist_path(@hire_artist) %></h1>
+
+        <% @reviews.each do |review| %>
+        <h3 class="profile_item">Title: <%= review.title%></h3>       
+        <p class="sub_profile_item">Written by: <%= link_to review.creator, creator_path(review.creator)%><p>
+        <p class="sub_profile_item">Description: <%= review.description%><p>
+        <p class="sub_profile_item">Score: <%= review.rating%>
+        <%end %>
+        </div>
+    </div>
+</div>

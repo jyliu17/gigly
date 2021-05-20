@@ -1,0 +1,10 @@
+
+<%= form_for @artist_specialty do |f| %>
+    <label>Select Yourself</label>
+    <%= f.collection_select(:artist_id, @artists, :id, :email) %>
+    
+    <label>Select Specialties</label>
+    <%= f.collection_select(:specialty_id, @specialties, :id, :name, {}, {:multiple => true}) %>
+
+    <%= f.submit %>
+<% end %>

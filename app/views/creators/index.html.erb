@@ -1,0 +1,24 @@
+<div class="container rounded bg-dark text-white">
+    <br>
+    <div class="row">
+        <div class="col">
+        <h1>Creators</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        </div>
+        <% @columns.each do |col| %>
+            <div class="col">
+            <% col.each do |creator| %>
+                <h1 class="index_item"><%= link_to creator.to_s, creator_path(creator) %></h1>
+                <img alt="thumbnails" src=<%=creator.profile_picture%>>
+                <br>
+                <p class="sub_index_item">Bio: <%= truncate(creator.bio, length: 23) %></p>
+                <br>
+                <br>
+            <% end %>
+            </div>
+        <% end %>   
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container rounded bg-dark text-white">
+<br>
+    <div class="row">    
+        <div class="col">    
+        <p class="profile_item">Project Name: <span class="sub_profile_item"><%= @project.name %></span></p>
+        <br>
+        <p class="profile_item">Location: <span class="sub_profile_item"><%= @project.location %></span></p>
+        <br>
+        <p class="profile_item">Description: <span class="sub_profile_item"><%= @project.description %></span></p>
+        <br>
+        <p class="profile_item">Deadline: <span class="sub_profile_item"><%= @project.deadline.to_formatted_s(:long) %></span></p>
+        <br>
+        <p class="profile_item">Creator: <span class="sub_profile_item"><%= link_to @project.creator.to_s, creator_path(@project.creator) %></span></p>
+        <br>
+        <h1 class="profile_item">Current Artists:</h1>
+        <% if @project.artists.empty? == false%>
+            <% @project.artists.each do |artist|%> 
+                <li class="sub_profile_item"><%= link_to artist.to_s, artist_path(artist)%> </li>
+            <% end %>
+        <% elsif @current_creator && @current_creator.id == @project.creator.id %>
+            <h5><%=link_to "Find artists for this project", artists_path %> </h5>
+        <% else %>
+            <p>There are no artists for this project yet<p>
+        <% end %>
+        <br> 
+
+        <h1 class="profile_item">Remaining Specialties Needed:</h1>
+        <ul>
+            <% @project.project_specialties.each do |ps|%>
+                <li class="sub_profile_item"><%= ps.specialty.name %>
+                <% if @current_creator %>
+                    <% if @current_creator.id == @project.creator_id %>
+                <%= button_to "Remove", project_specialty_path(ps), method: :delete, class:"btn btn-default btn-primary btn-lg" %> 
+                    <% end %>
+                <% end %>
+                </li>
+            <% end %>
+        </ul>
+
+        <% if @current_creator %>
+            <% if @current_creator.id == @project.creator_id %>
+                <%= button_to "Edit Poject", edit_project_path(@project), method: :get, class:"btn btn-default btn-primary btn-lg" %>
+                <br>
+                <%= button_to "Delete Project", project_path(@project), method: :delete, class:"btn btn-default btn-primary btn-lg" %> 
+            <% end %>
+        <% end %>
+        <br>
+        </div>
+    </div>
+</div>

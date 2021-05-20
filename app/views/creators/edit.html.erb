@@ -1,0 +1,51 @@
+<%= render "shared/errors" %>
+    
+<div class="container rounded bg-dark text-white">
+    <h1> Edit Your Profile </h1>
+<%= form_for @creator, :html => {:class => "form-horizontal center"}  do |f| %>
+   <div class="form-group">
+        <div class="col-12">
+        <label class="index_item">First Name:</label>
+        <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+    </div>
+
+   <div class="form-group">
+        <div class="col-12">
+        <label class="index_item">Last Name:</label>
+        <%= f.text_field :last_name, class: "form-control"%>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-12">
+        <label class="index_item">Email:</label>
+    <%= f.text_field :email, class: "form-control" %>
+         </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-12">
+        <label class="index_item">Password:</label>
+    <%= f.password_field :password, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-12">
+        <label class="index_item">Bio:</label>
+    <%= f.text_area :bio, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-12">
+        <label class="index_item">Profile Picture URL:</label>
+    <%= f.text_area :profile_picture, class: "form-control" %>
+        </div>
+    </div>
+    <br>
+    <%= f.submit "Edit your profile", class: "btn btn-default btn-primary btn-lg" %>
+<% end %>
+<br>
+</div>

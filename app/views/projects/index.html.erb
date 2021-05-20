@@ -1,0 +1,35 @@
+<div class="container rounded bg-dark text-white">
+<br>
+    <div class="row">
+        <div class="col">
+        <h1>Projects</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Search by Location: </h2>
+            <%= form_tag(projects_path, method: :get) do %>
+                <h3 style="color:black"><%= collection_select :search_by_location, params[:search_by_location], @projects.uniq{|proj| proj.location}, :location, :location %></h3>
+                <br>
+                <%= submit_tag ("Search"), class: "btn btn-default btn-primary btn-lg"  %>
+            <% end %>  
+            <br>
+            <%= button_to "Clear this search", projects_path, method: :get, class: "btn btn-default btn-primary btn-lg" %>
+
+        </div>
+        <% @columns.each do |col| %>
+            <div class="col">
+            <% col.each do |project| %>
+                <h1 class="index_item"><%= link_to project.name, project_path(project) %></h1>
+                <br>
+                <li class="sub_index_item">Location: <%= project.location %></li>
+                <li class="sub_index_item">Deadline: <%= project.deadline.to_formatted_s(:long) %></li>
+                <li class="sub_index_item">Creator: <%= project.creator %></li>
+                <li class="sub_index_item">Description: <%= project.description %></li>
+                <br>
+                <br>
+            <% end %>
+            </div>
+        <% end %>   
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="container rounded bg-dark text-white">
+<br>
+        <% if @current_creator.projects.empty? == false  %>
+            <%= form_for @project_artist do |f| %>
+                <label>Select project to add artist to:</label>
+                <div class="form_group">
+                    <h3 style="color:black"><%= f.collection_select(:project_id, @current_creator.projects, :id, :name) %></h3>
+                </div>
+                <br>
+                <%= f.submit "Send Hire Request", class: "btn btn-default btn-primary btn-lg" %>
+            <% end %>
+        <% else %>
+        <h3>You currently have no projects! Create a project to hire an artist.</h3>
+        <p><%= button_to "Create a project", new_project_path, method: :get, class: "btn btn-default btn-primary btn-lg"  %> <p>
+    <%end%>
+    <br>
+</div>

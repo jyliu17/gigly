@@ -1,0 +1,49 @@
+<div class="container rounded bg-dark text-white">
+<br>
+  <div class="row">
+    <div class="show_column">
+      <p class="profile_item"><%= @creator.to_s %></p> 
+      <img alt= "profile pic" src=<%=@creator.profile_picture%> ></h4>
+
+      <p class="profile_item">Bio:</p>
+      <p class="sub_profile_item"><%=@creator.bio%> </p>
+      <br>
+      <% if @current_creator %>
+        <% if @current_creator.id == @creator.id %>
+          <%= button_to "Edit Profile", edit_creator_path(@creator), method: :get, class: "btn btn-default btn-primary btn-lg" %>
+          <br>
+          <%= button_to "Delete Profile", creator_path(@creator), method: :delete, class: "btn btn-default btn-primary btn-lg"%>
+          <br>
+          <br>
+        <% else %>
+          <%= button_to "Contact", artists_path, method: :get,class: "btn btn-default btn-primary btn-lg" %>
+          <br>
+          <br>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="show_column">
+      <p class="profile_item">My Upcoming Projects</p>
+      <% @creator.projects.each do |project|%>
+      <p class="sub_profile_item"> <%= link_to project.name, project_path(project)%></p>
+      <% end %>
+      <% if @current_creator %>
+        <% if @current_creator.id == @creator.id %>
+          <%= button_to "Create a New Project", new_project_path(@creator), method: :get, class: "btn btn-default btn-primary btn-lg" %>
+          <br>
+          <br>
+        <% end %>
+      <% end %>
+
+      <p class="profile_item">Past Projects</p>
+      <% if @creator.past_projects.empty?%>
+        <p class="sub_profile_item">You have no past projects to display</p>
+      <% else %>
+        <% @creator.past_projects.each do |project|%>
+          <p class="sub_profile_item"><%= link_to project.name, project_path(project) %><p>
+        <% end %>
+      <% end%>
+    </div>
+  </div>
+</div>
+

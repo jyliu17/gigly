@@ -1,0 +1,26 @@
+
+<div class="errors">
+<% if flash[:errors]%>
+    <%= flash[:errors]%>
+<% end %>
+</div>
+
+<div class="container rounded bg-dark text-white">
+    <br>
+    <h1> Sign In </h1>
+
+    <%= form_for :session, url: creator_login_path, :html => {:class => "form-horizontal center"} do |f| %>
+    <div class="form_group">
+        <label class="index_item">Email</label>
+        <%= f.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form_group">
+        <label class="index_item">Password:</label>
+        <%= f.password_field :password, class: "form-control"%>
+    </div>
+    <br>
+    <%= f.submit "Log In", class: "btn btn-default btn-primary btn-lg" %>
+    <% end %>
+    <br>
+</div>

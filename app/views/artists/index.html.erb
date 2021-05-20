@@ -1,0 +1,58 @@
+<div class="container rounded bg-dark text-white">
+    <br>
+    <div class="row">
+        <div class="col">
+        <h1>Artists</h1>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col">
+        <h2>Search by Rate: </h2>
+        <%= form_tag(artists_path, method: :get) do %>
+            <h3 style="color:black"><%= text_field_tag(:search_by_rate, params[:search_by_rate]) %></h3>
+            <br>
+            <%= submit_tag ("Search"), class: "btn btn-default btn-primary btn-lg"  %>
+        <% end %> 
+        <br>  
+        <br>
+        <h2>Search by Location: </h2>
+        <%= form_tag(artists_path, method: :get) do %>
+            <h3 style="color:black"><%= collection_select :search_by_location, params[:search_by_location], @artists.uniq{|art| art.location}, :location, :location %></h3>
+            <br>
+            <%= submit_tag ("Search"), class: "btn btn-default btn-primary btn-lg"  %>
+        <% end %>  
+        <br>
+        <br>
+        <h2>Search by Specialty: </h2>
+        <%= form_tag(artists_path, method: :get) do %>
+            <h3 style="color:black"><%= collection_select :search_by_specialty, params[:search_by_specialty], Specialty.all, :id, :name %></h3>
+            <br>
+            <%= submit_tag ("Search"), class: "btn btn-default btn-primary btn-lg" %>
+        <% end %>  
+        <br>
+        <%= button_to "Clear this search", artists_path, method: :get, class: "btn btn-default btn-primary btn-lg" %>
+        </div>
+        <% @columns.each do |col| %>
+            <div class="col">
+            <% col.each do |artist| %>
+                <h1 class="index_item"><%= link_to artist.to_s, artist_path(artist) %></h1>
+                <img alt="thumbnails" src=<%=artist.profile_picture%>>
+                <br>
+                <p class="index_item">Specialties:</p> 
+                    <ul><% artist.specialties.each do |specialty| %>
+                    
+                        <li class="sub_index_item"><%= specialty.name %></li>
+                    <% end %></ul>
+                <p class="index_item">Location: <%= artist.location %> </p>
+                <p class="index_item">Rate: $<%= artist.rate %> </p>
+                <% if artist.average_rating > 0 %> 
+                <p class="index_item">Average Rating: <%= artist.average_rating%></p>
+                    <% end %> 
+                <br>
+                <br>
+            <% end %>
+            </div>
+        <% end %>   
+    </div>
+</div>
+

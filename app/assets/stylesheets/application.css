@@ -1,0 +1,88 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+   /* ---------------------- CSS for Navbar and Banner -------------------- */
+
+
+.index_item {
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  font-size: 1.25vw;
+  font-weight: 400;
+}
+
+.sub_index_item {
+  font-size: 1vw;
+}
+
+.nav_item {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.nav {
+  text-align: left;
+}
+ .form_group {
+  font-size: 20px;
+}
+
+.profile_item {
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+  font-size: 1.75vw;
+  font-weight: 400;
+}
+
+.sub_profile_item {
+  font-size: 1.25vw;
+  font-weight: 300;
+}
+
+.show_column {
+  padding: 0px 50px 0px 50px;
+  max-width: 500px;
+}
+
+.title {
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 40px;
+  letter-spacing: 10px;
+  word-spacing: 2px;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase;
+  text-align: center;
+  background-image: url("https://scx2.b-cdn.net/gfx/news/hires/2016/578650fe544c4.jpg") ;
+  background-size: 200px 50px;
+} 
+
+body {
+  background-image: linear-gradient(darkblue, purple, darkblue);
+  height: 100vh;
+  
+}
+
+.errors {
+  color: white;
+  font-size: 15px
+}
+
+img {
+  max-width: 200px;
+}

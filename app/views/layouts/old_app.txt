@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gigly.io</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    
+    <div class="banner">
+      <h1 id="banner-header">GIGLY🤣</h1>
+
+      <ul class="nav"> 
+        <li class="left"><%= link_to "Browse Artists", artists_path, method: :get %></li>
+        <li class="left"><%= link_to "Browse Projects", projects_path, method: :get %></li>
+        <li class="left"><%= link_to "Browse Creators", creators_path, method: :get %></li>
+        <% if @current_creator %>
+          <li class="right"><%= link_to "My Profile", creator_path(cookies[:creator_id]), method: :get  %></li>
+          <li class="right"><%= link_to "Logout", logout_path, method: :get  %></li>
+          <li class="right">Welcome <%= @current_creator.first_name %></li>
+        <% else %>
+          <li class="right"><%= link_to "Sign Up", new_creator_path %></li>
+          <li class="right"><%= link_to "Login", new_creator_login_path %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

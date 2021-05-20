@@ -1,0 +1,75 @@
+<div class="container rounded bg-dark text-white">
+<br>
+  <div class="row">
+    <div class="show_column">
+      <p class="profile_item"><%=@artist.to_s%> </p> 
+      <img alt= "profile pic" src=<%=@artist.profile_picture%>>
+      <br>
+      <br>
+      <% if @current_creator %>
+        <%= button_to "Hire Artist", new_project_artist_path, method: :get, class: "btn btn-default btn-primary btn-lg" %>
+        <br>
+        <%= button_to "Contact",  new_project_artist_path, method: :get, class: "btn btn-default btn-primary btn-lg"%>
+        <br>
+      <% end %>
+      <br>
+      <% if @current_artist %>
+        <% if @current_artist.id == @artist.id %>
+          <%= button_to "Edit Profile", edit_artist_path(@artist), method: :get %>
+          <br>
+          <%= button_to "Delete Profile", artist_path(@artist), method: :delete, class: "btn btn-default btn-primary btn-lg"%>
+          <br>
+          <br>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="show_column">
+      <p class="profile_item">Bio:</p>
+      <p class="sub_profile_item"><%=@artist.bio%></p>
+      <br>
+      <p class="profile_item">Location:</p>
+      <p class="sub_profile_item"> <%=@artist.location%> </p>
+      <br>
+      <p class="profile_item">Specialties: <% @artist.specialties.each do |spec| %> </p> 
+        <li class="sub_profile_item"><%= spec.name %></li>
+      <% end %>
+      <br>
+      <% if @artist.average_rating > 0 %> 
+      <p class="profile_item">Average Rating: <%=link_to @artist.average_rating, review_path%> </p> 
+      <% end %>
+
+      <% if @current_creator %>
+          <% if @current_creator.projects.any? do |proj| %>
+              <% proj.project_artists.any? do |pa| %>
+                <% pa.artist_id == @hire_artist.id %>
+              <% end %>
+            <% end %>
+            <%= button_to "Review Artist", new_review_path, method: :get, class: "btn btn-default btn-primary btn-lg" %>
+          <% end %>
+      <% end %>
+
+      <p class="profile_item">Upcoming Projects</p>
+      <% if @current_artist && @artist.upcoming_projects.empty?%>
+        <p class="sub_profile_item">You don't have any upcoming projects. Browse projects to find a gig!</p>
+      <% elsif @artist.upcoming_projects.empty?%>
+        <p class="sub_profile_item"><%= @artist.first_name%> doesn't have any upcoming projects on Gigly yet.</p>
+      <% else %>
+        <% @artist.upcoming_projects.each do |project|%>
+          <p class="sub_profile_item"><%= link_to project.name, project_path(project) %><p>
+        <% end %>
+      <% end%>
+      <br>
+      <p class="profile_item">Past Projects</p>
+      <% if @current_artist && @artist.past_projects.empty?%>
+        <p class="sub_profile_item">You haven't fulfilled any projects yet. Browse projects to find a gig!</p>
+      <% elsif @artist.past_projects.empty?%>
+        <p class="sub_profile_item"><%= @artist.first_name%> hasn't completed any projects on Gigly yet.</p>
+      <% else %>
+        <% @artist.past_projects.each do |project|%>
+          <p class="sub_profile_item"><%= link_to project.name, project_path(project) %><p>
+        <% end %>
+      <% end%>
+    </div>
+  </div>
+</div>

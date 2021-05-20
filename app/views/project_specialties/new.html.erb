@@ -1,0 +1,13 @@
+<div class="container rounded bg-dark text-white">
+    <br>
+    <h1>Select Specialties</h1>
+    
+    <%= form_for @project_specialty do |f| %>
+    <div class="form_group">
+        <label>Hold down command to select multiple specialties</label>
+        <h3 style="color:black"><%= f.collection_select(:specialty_id, @specialties, :id, :name, {}, {:multiple => true}) %></h3>
+    </div>
+        <%= f.submit "Submit", class: "btn btn-default btn-primary btn-lg" %>
+    <% end %>
+    <br>
+</div>
